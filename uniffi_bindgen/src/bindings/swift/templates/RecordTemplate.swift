@@ -1,6 +1,6 @@
 {% import "macros.swift" as swift %}
 {%- let rec = self.inner() %}
-public struct {{ rec|type_name }} {
+public struct {{ rec|type_name }}: Codable {
     {%- for field in rec.fields() %}
     public var {{ field.name()|var_name }}: {{ field|type_name }}
     {%- endfor %}
