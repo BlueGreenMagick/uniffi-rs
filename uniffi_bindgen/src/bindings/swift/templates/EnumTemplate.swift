@@ -3,7 +3,7 @@
 // See https://github.com/mozilla/uniffi-rs/issues/396 for further discussion.
 {% import "macros.swift" as swift %}
 {%- let e = self.inner() %}
-public enum {{ e|type_name }} {
+public enum {{ e|type_name }}: Codable {
     {% for variant in e.variants() %}
     case {{ variant.name()|enum_variant_swift }}{% if variant.fields().len() > 0 %}({% call swift::field_list_decl(variant) %}){% endif -%}
     {% endfor %}
