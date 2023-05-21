@@ -3,7 +3,7 @@
 {%- call swift::docstring(e, 0) %}
 {% match e.variant_discr_type() %}
 {% when None %}
-public enum {{ type_name }} {
+public enum {{ type_name }}: Codable {
     {% for variant in e.variants() %}
     {%- call swift::docstring(variant, 4) %}
     case {{ variant.name()|enum_variant_swift_quoted }}{% if variant.fields().len() > 0 %}(

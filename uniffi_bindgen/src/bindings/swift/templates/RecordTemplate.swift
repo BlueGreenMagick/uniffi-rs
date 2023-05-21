@@ -1,6 +1,6 @@
 {%- let rec = ci|get_record_definition(name) %}
 {%- call swift::docstring(rec, 0) %}
-public struct {{ type_name }} {
+public struct {{ type_name }}: Codable {
     {%- for field in rec.fields() %}
     {%- call swift::docstring(field, 4) %}
     public {% if config.generate_immutable_records() %}let{% else %}var{% endif %} {{ field.name()|var_name }}: {{ field|type_name }}
