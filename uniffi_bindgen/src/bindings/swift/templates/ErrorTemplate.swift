@@ -26,6 +26,14 @@ public enum {{ type_name }} {
         }
     }
     {% endif %}
+
+    func variantName() -> String {
+        switch self {
+            {% for variant in e.variants() %}
+            case .{{ variant.name()|class_name }}: return "{{ variant.name()|class_name }}"
+            {%- endfor %}
+        }
+    }
 }
 
 
