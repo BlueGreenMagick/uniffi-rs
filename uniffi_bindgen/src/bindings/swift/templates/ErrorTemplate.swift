@@ -16,6 +16,16 @@ public enum {{ type_name }} {
     {% endfor %}
 
     {%- endif %}
+
+    {% if e.is_flat() %}
+    func message() -> String {
+        switch self {
+            {% for variant in e.variants() %}
+            case let .{{ variant.name()|class_name }}(message): return message
+            {%- endfor %}
+        }
+    }
+    {% endif %}
 }
 
 
